@@ -7,6 +7,9 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.block.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -14,11 +17,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
 import net.quiltservertools.interdimensional.portals.portal.PortalIgnitionSource;
 import net.quiltservertools.interdimensional.portals.portal.PortalPlacer;
 import net.quiltservertools.interdimensional.portals.portal.frame.CustomAreaHelper;
@@ -39,7 +39,7 @@ public class InterdimensionalPortals implements ModInitializer {
     @Override
     public void onInitialize() {
         PORTAL_BLOCK = new PortalBlock(Block.Settings.of(Material.PORTAL).noCollision().strength(-1).sounds(BlockSoundGroup.GLASS).luminance(state -> 11));
-        Registry.register(Registry.BLOCK, new Identifier(InterdimensionalPortals.MOD_ID, "portal_block"), PORTAL_BLOCK);
+        Registry.register(Registries.BLOCK, new Identifier(InterdimensionalPortals.MOD_ID, "portal_block"), PORTAL_BLOCK);
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> portalLinkingStorage = (PortalLinkingStorage) server.getWorld(World.OVERWORLD).getPersistentStateManager().getOrCreate(PortalLinkingStorage::fromNbt, PortalLinkingStorage::new, MOD_ID));
 

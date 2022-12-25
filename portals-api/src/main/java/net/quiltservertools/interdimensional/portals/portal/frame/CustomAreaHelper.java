@@ -1,19 +1,19 @@
 package net.quiltservertools.interdimensional.portals.portal.frame;
 
 import com.google.common.collect.Sets;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockLocating;
+import net.minecraft.world.WorldAccess;
 import net.quiltservertools.interdimensional.portals.CustomPortalApiRegistry;
 import net.quiltservertools.interdimensional.portals.InterdimensionalPortals;
 import net.quiltservertools.interdimensional.portals.portal.PortalIgnitionSource;
 import net.quiltservertools.interdimensional.portals.util.PortalLink;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.BlockLocating;
-import net.minecraft.world.WorldAccess;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -150,7 +150,7 @@ public class CustomAreaHelper extends PortalFrameTester {
         if (ignitionSource.isLava())
             return blockState.getFluidState().isIn(FluidTags.LAVA);
         if (ignitionSource.sourceType == PortalIgnitionSource.SourceType.FLUID) {
-            return Registry.FLUID.getId(blockState.getFluidState().getFluid()).equals(ignitionSource.ignitionSourceID);
+            return Registries.FLUID.getId(blockState.getFluidState().getFluid()).equals(ignitionSource.ignitionSourceID);
         }
         return false;
     }

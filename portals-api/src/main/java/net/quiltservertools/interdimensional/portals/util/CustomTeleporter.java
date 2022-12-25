@@ -1,28 +1,28 @@
 package net.quiltservertools.interdimensional.portals.util;
 
-import net.quiltservertools.interdimensional.portals.CustomPortalApiRegistry;
-import net.quiltservertools.interdimensional.portals.InterdimensionalPortals;
-import net.quiltservertools.interdimensional.portals.interfaces.CustomTeleportingEntity;
-import net.quiltservertools.interdimensional.portals.portal.PortalPlacer;
-import net.quiltservertools.interdimensional.portals.portal.frame.PortalFrameTester;
-import net.quiltservertools.interdimensional.portals.portal.linking.DimensionalBlockPos;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.BlockLocating;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.dimension.DimensionType;
+import net.quiltservertools.interdimensional.portals.CustomPortalApiRegistry;
+import net.quiltservertools.interdimensional.portals.InterdimensionalPortals;
+import net.quiltservertools.interdimensional.portals.interfaces.CustomTeleportingEntity;
+import net.quiltservertools.interdimensional.portals.portal.PortalPlacer;
+import net.quiltservertools.interdimensional.portals.portal.frame.PortalFrameTester;
+import net.quiltservertools.interdimensional.portals.portal.linking.DimensionalBlockPos;
 
 import java.util.Optional;
 

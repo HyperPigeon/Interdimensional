@@ -109,7 +109,7 @@ public class PortalBlock extends Block implements PlayerAwarePolymerBlock, Polym
 
             if (!entityInPortal.hasTeleported()) {
                 entityInPortal.setInPortal(true);
-                if (entityInPortal.getTimeInPortal() >= (entity.isInvulnerable() ? entity.getMaxNetherPortalTime() + entity.getDefaultNetherPortalCooldown() : entity.getMaxNetherPortalTime())) {
+                if (entityInPortal.getTimeInPortal() >= (entity.isInvulnerable() ? entity.getMaxNetherPortalTime() + entity.getDefaultPortalCooldown() : entity.getMaxNetherPortalTime())) {
                     if (link.permission != null && !link.permission.test(entity.getCommandSource())) {
                         // Entity does not have permissions to enter
                         return;
@@ -134,8 +134,7 @@ public class PortalBlock extends Block implements PlayerAwarePolymerBlock, Polym
         return InterdimensionalPortals.defaultPortalBaseFinder(world, pos);
     }
 
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         if (random.nextInt(100) == 0) {
             world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
         }
@@ -159,4 +158,5 @@ public class PortalBlock extends Block implements PlayerAwarePolymerBlock, Polym
             world.addParticle(new BlockStateParticleEffect(InterdimensionalPortalsClient.CUSTOMPORTALPARTICLE, state), d, e, f, g, h, j);
         }
     }
+
 }

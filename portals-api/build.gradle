@@ -1,6 +1,26 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+version '1.2.0'
+group 'net.quiltservertools'
+
 repositories {
     maven {
         url 'https://maven.nucleoid.xyz'
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+
     }
 }
 

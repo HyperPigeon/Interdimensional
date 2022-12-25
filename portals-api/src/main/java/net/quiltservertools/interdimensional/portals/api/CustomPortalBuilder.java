@@ -1,5 +1,6 @@
 package net.quiltservertools.interdimensional.portals.api;
 
+import net.minecraft.registry.Registries;
 import net.minecraft.server.command.ServerCommandSource;
 import net.quiltservertools.interdimensional.portals.CustomPortalApiRegistry;
 import net.quiltservertools.interdimensional.portals.InterdimensionalPortals;
@@ -13,8 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -40,7 +39,7 @@ public class CustomPortalBuilder {
      * This should be called last, only when you are finished configuring the portal
      */
     public void registerPortal() {
-        CustomPortalApiRegistry.addPortal(Registry.BLOCK.get(portalLink.block), portalLink);
+        CustomPortalApiRegistry.addPortal(Registries.BLOCK.get(portalLink.block), portalLink);
     }
 
     /**
@@ -59,7 +58,7 @@ public class CustomPortalBuilder {
      * @param block The Block to be used as the portal's frame block
      */
     public CustomPortalBuilder frameBlock(Block block) {
-        portalLink.block = Registry.BLOCK.getId(block);
+        portalLink.block = Registries.BLOCK.getId(block);
         return this;
     }
 

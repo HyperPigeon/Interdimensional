@@ -2,7 +2,7 @@ package net.quiltservertools.interdimensional
 
 import com.mojang.brigadier.CommandDispatcher
 import net.fabricmc.api.ModInitializer
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping
@@ -26,9 +26,11 @@ object Interdimensional : ModInitializer {
         ServerLifecycleEvents.SERVER_STOPPING.register(ServerStopping {
             serverStopping()
         })
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, _: Boolean ->
-            registerCommands(dispatcher)
-        })
+
+        CommandRegistrationCallback.EVENT.register{
+                dispatcher, registryAccess, environment -> registerCommands(dispatcher)
+        }
+
     }
 
     private fun serverStarting(server: MinecraftServer) {

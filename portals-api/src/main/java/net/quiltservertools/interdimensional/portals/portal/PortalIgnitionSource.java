@@ -4,18 +4,18 @@ import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.function.BiFunction;
 
 public class PortalIgnitionSource {
-    public final static PortalIgnitionSource FIRE = new PortalIgnitionSource(SourceType.BLOCKPLACED, Registry.BLOCK.getId(Blocks.FIRE));
+    public final static PortalIgnitionSource FIRE = new PortalIgnitionSource(SourceType.BLOCKPLACED, Registries.BLOCK.getId(Blocks.FIRE));
     public final static PortalIgnitionSource WATER = FluidSource(Fluids.WATER);
 
     public enum SourceType {
@@ -33,11 +33,11 @@ public class PortalIgnitionSource {
 
     public static PortalIgnitionSource ItemUseSource(Item item) {
         USEITEMS.add(item);
-        return new PortalIgnitionSource(SourceType.USEITEM, Registry.ITEM.getId(item));
+        return new PortalIgnitionSource(SourceType.USEITEM, Registries.ITEM.getId(item));
     }
 
     public static PortalIgnitionSource FluidSource(Fluid fluid) {
-        return new PortalIgnitionSource(SourceType.FLUID, Registry.FLUID.getId(fluid));
+        return new PortalIgnitionSource(SourceType.FLUID, Registries.FLUID.getId(fluid));
     }
 
     public static PortalIgnitionSource CustomSource(Identifier ignitionSourceID) {
@@ -51,11 +51,11 @@ public class PortalIgnitionSource {
     }
 
     public boolean isWater() {
-        return Registry.FLUID.getEntry(RegistryKey.of(Registry.FLUID_KEY, ignitionSourceID)).get().isIn(FluidTags.WATER);
+        return Registries.FLUID.getEntry(RegistryKey.of(Registries.FLUID.getKey(), ignitionSourceID)).get().isIn(FluidTags.WATER);
     }
 
     public boolean isLava() {
-        return Registry.FLUID.getEntry(RegistryKey.of(Registry.FLUID_KEY, ignitionSourceID)).get().isIn(FluidTags.LAVA);
+        return Registries.FLUID.getEntry(RegistryKey.of(Registries.FLUID.getKey(), ignitionSourceID)).get().isIn(FluidTags.LAVA);
     }
 
     public static boolean isRegisteredIgnitionSourceWith(Item item) {
